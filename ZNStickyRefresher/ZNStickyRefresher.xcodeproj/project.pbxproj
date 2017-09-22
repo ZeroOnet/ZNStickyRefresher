@@ -13,6 +13,8 @@
 		4F0DF5EC1F75370500B2810C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F0DF5EB1F75370500B2810C /* Assets.xcassets */; };
 		4F0DF5EF1F75370500B2810C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F0DF5ED1F75370500B2810C /* LaunchScreen.storyboard */; };
 		4F0DF5FA1F75370500B2810C /* ZNStickyRefresherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DF5F91F75370500B2810C /* ZNStickyRefresherUITests.swift */; };
+		4F0DF6061F75407800B2810C /* ZNStickyRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DF6051F75407800B2810C /* ZNStickyRefreshControl.swift */; };
+		4F0DF6081F75416C00B2810C /* ZNStickyRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DF6071F75416B00B2810C /* ZNStickyRefreshView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		4F0DF5F51F75370500B2810C /* ZNStickyRefresherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZNStickyRefresherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F0DF5F91F75370500B2810C /* ZNStickyRefresherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZNStickyRefresherUITests.swift; sourceTree = "<group>"; };
 		4F0DF5FB1F75370500B2810C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F0DF6051F75407800B2810C /* ZNStickyRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZNStickyRefreshControl.swift; sourceTree = "<group>"; };
+		4F0DF6071F75416B00B2810C /* ZNStickyRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZNStickyRefreshView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		4F0DF5E31F75370500B2810C /* ZNStickyRefresher */ = {
 			isa = PBXGroup;
 			children = (
+				4F0DF6041F75405E00B2810C /* ZNStickyRefresher */,
 				4F0DF5E41F75370500B2810C /* AppDelegate.swift */,
 				4F0DF5E61F75370500B2810C /* ViewController.swift */,
 				4F0DF5E81F75370500B2810C /* Main.storyboard */,
@@ -94,6 +99,15 @@
 				4F0DF5FB1F75370500B2810C /* Info.plist */,
 			);
 			path = ZNStickyRefresherUITests;
+			sourceTree = "<group>";
+		};
+		4F0DF6041F75405E00B2810C /* ZNStickyRefresher */ = {
+			isa = PBXGroup;
+			children = (
+				4F0DF6051F75407800B2810C /* ZNStickyRefreshControl.swift */,
+				4F0DF6071F75416B00B2810C /* ZNStickyRefreshView.swift */,
+			);
+			path = ZNStickyRefresher;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +154,7 @@
 		4F0DF5D91F75370400B2810C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ZNSticky;
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = FunctionMaker;
@@ -200,7 +215,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F0DF5E71F75370500B2810C /* ViewController.swift in Sources */,
+				4F0DF6081F75416C00B2810C /* ZNStickyRefreshView.swift in Sources */,
 				4F0DF5E51F75370500B2810C /* AppDelegate.swift in Sources */,
+				4F0DF6061F75407800B2810C /* ZNStickyRefreshControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
