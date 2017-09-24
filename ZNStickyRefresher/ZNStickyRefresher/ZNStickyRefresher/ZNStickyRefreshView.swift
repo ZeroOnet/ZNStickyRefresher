@@ -12,10 +12,14 @@ enum refreshState {
     
     /// original state
     case Normal
-    /// end dragging and refresh
-    case willRefresh
+    /// display main sticky refresh effect
+    case showStickyEffect
     /// show refreshing effect
     case isRefreshing
+    
+    /// show refreshing result
+    case failedRefreshing
+    case succeededRefreshing
 }
 
 /// display refresh effect
@@ -32,7 +36,19 @@ class ZNStickyRefreshView: UIView {
     /// record current refresh state
     var state: refreshState = .Normal {
         didSet {
-            
+            switch state {
+            case .Normal:
+                break;
+            case .showStickyEffect:
+                // FIXME: - show sticky effect
+                break;
+            case .isRefreshing:
+                activityIndicatorView.startAnimating()
+            case .failedRefreshing:
+                break;
+            case .succeededRefreshing:
+                break;
+            }
         }
     }
     
