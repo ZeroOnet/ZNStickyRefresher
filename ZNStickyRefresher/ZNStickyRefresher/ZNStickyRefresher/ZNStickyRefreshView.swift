@@ -21,6 +21,14 @@ enum refreshState {
 /// display refresh effect
 class ZNStickyRefreshView: UIView {
     
+    @IBOutlet weak var successIconView: UIImageView!
+    @IBOutlet weak var successInfoLabel: UILabel!
+    
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
+    @IBOutlet weak var stickyView: UIView!
+    @IBOutlet weak var refreshIconView: UIImageView!
+    
     /// record current refresh state
     var state: refreshState = .Normal {
         didSet {

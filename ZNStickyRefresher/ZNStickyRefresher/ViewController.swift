@@ -9,9 +9,24 @@
 import UIKit
 
 class ViewController: UITableViewController {
+    
+    lazy var stickyRefreshControl: ZNStickyRefreshControl = {
+        let result = ZNStickyRefreshControl()
+        result.addTarget(self, action: #selector(loadData), for: .valueChanged)
+        
+        return result
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = "测试用例"
+        
+        tableView.addSubview(stickyRefreshControl)
+    }
+    
+    @objc private func loadData() {
+        
     }
 }
 

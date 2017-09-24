@@ -12,11 +12,55 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="JcZ-Ut-Zbq" customClass="ZNStickyRefreshView" customModule="ZNStickyRefresher" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="151" height="118"/>
+            <rect key="frame" x="0.0" y="0.0" width="157" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <subviews>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="successIcon" translatesAutoresizingMaskIntoConstraints="NO" id="m1q-Eh-A2A">
+                    <rect key="frame" x="23" y="12" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2KQ-Fw-dB5">
+                    <rect key="frame" x="63" y="7" width="30" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="refreshIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jxj-EJ-7k1">
+                            <rect key="frame" x="5" y="5" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cdY-oF-OcO">
+                    <rect key="frame" x="69" y="12" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </activityIndicatorView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="刷新成功" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDy-BK-3T1">
+                    <rect key="frame" x="68" y="12" width="66" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-196.5" y="-21"/>
+            <connections>
+                <outlet property="activityIndicatorView" destination="cdY-oF-OcO" id="Ecc-eO-eRS"/>
+                <outlet property="refreshIconView" destination="jxj-EJ-7k1" id="RjQ-O6-EbA"/>
+                <outlet property="stickyView" destination="2KQ-Fw-dB5" id="cqQ-5p-nc8"/>
+                <outlet property="successIconView" destination="m1q-Eh-A2A" id="YWP-l1-rHK"/>
+                <outlet property="successInfoLabel" destination="dDy-BK-3T1" id="We4-Rc-xDh"/>
+            </connections>
+            <point key="canvasLocation" x="-368.5" y="-203"/>
         </view>
     </objects>
+    <resources>
+        <image name="refreshIcon" width="24" height="24"/>
+        <image name="successIcon" width="24" height="24"/>
+    </resources>
 </document>
