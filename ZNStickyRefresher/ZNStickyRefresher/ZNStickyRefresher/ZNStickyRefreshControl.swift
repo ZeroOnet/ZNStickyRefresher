@@ -37,6 +37,13 @@ class ZNStickyRefreshControl: UIControl {
         newSuperview.addObserver(self, forKeyPath: "contentOffset", options: [], context: nil)
     }
     
+    // remove observer
+    override func removeFromSuperview() {
+        superview?.removeObserver(self, forKeyPath: "contentOffset")
+        
+        super.removeFromSuperview()
+    }
+    
     // FIXME: - KVO call-back
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         

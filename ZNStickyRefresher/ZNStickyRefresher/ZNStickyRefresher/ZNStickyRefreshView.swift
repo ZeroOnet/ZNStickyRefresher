@@ -8,8 +8,26 @@
 
 import UIKit
 
+enum refreshState {
+    
+    /// original state
+    case Normal
+    /// end dragging and refresh
+    case willRefresh
+    /// show refreshing effect
+    case isRefreshing
+}
+
 /// display refresh effect
 class ZNStickyRefreshView: UIView {
+    
+    /// record current refresh state
+    var state: refreshState = .Normal {
+        didSet {
+            
+        }
+    }
+    
     /// return a instance of ZNStickyRefreshView
     ///
     /// - Returns: a instance load from nib file
