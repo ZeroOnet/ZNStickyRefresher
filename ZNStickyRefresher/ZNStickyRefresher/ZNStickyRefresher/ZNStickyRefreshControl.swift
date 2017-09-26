@@ -11,8 +11,6 @@ import UIKit
 /// finish refreshing control logic
 class ZNStickyRefreshControl: UIControl {
     
-    private let refreshViewEffectiveHeight: CGFloat = 44
-    
     /// refresher's container view
     private weak var scrollView: UIScrollView?
     
@@ -66,8 +64,11 @@ class ZNStickyRefreshControl: UIControl {
                             y: -height,
                             width: scrollView.bounds.width,
                             height: height)
+        if refreshView.state != .isRefreshing {
+            refreshView.parentViewHeight = height
+        }
         
-        if height > refreshViewEffectiveHeight {
+        if height > refreshView.bounds.height && scrollView.isDragging {
             refreshView.state = .showStickyEffect
         }
     }

@@ -164,6 +164,7 @@
 				TargetAttributes = {
 					4F0DF5E01F75370400B2810C = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 73G2736TDH;
 						ProvisioningStyle = Automatic;
 					};
 					4F0DF5F41F75370500B2810C = {
@@ -360,6 +361,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 73G2736TDH;
 				INFOPLIST_FILE = ZNStickyRefresher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ifox.ZNStickyRefresher;
@@ -372,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 73G2736TDH;
 				INFOPLIST_FILE = ZNStickyRefresher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ifox.ZNStickyRefresher;
@@ -425,6 +428,7 @@
 				4F0DF6001F75370500B2810C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F0DF6011F75370500B2810C /* Build configuration list for PBXNativeTarget "ZNStickyRefresherUITests" */ = {
 			isa = XCConfigurationList;
@@ -433,6 +437,7 @@
 				4F0DF6031F75370500B2810C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
