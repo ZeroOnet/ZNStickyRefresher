@@ -58,33 +58,36 @@ class ZNStickyRefreshView: UIView {
                 let stretchScaleFactor = 1 - 0.5 * stretchHeight / maxStretchHeight
                 
                 stickyView.iconScale = stretchScaleFactor
-
+                
                 // top round
                 let strokePath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 15.0 * stretchScaleFactor, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
-                stickyView.strokePath = strokePath
-                
-//                let bottomRoundCenter = CGPoint(x: refreshIconView.center.x, y: parentViewHeight - 15 - 7)
-//                strokePath.move(to: bottomRoundCenter)
+    
+                let bottomRoundCenter = CGPoint(x: 15, y: stickyView.bounds.height - 15 * stretchScaleFactor * stretchScaleFactor)
+                strokePath.move(to: bottomRoundCenter)
 
                 // bottom round
-//                strokePath.addArc(withCenter: bottomRoundCenter, radius: 13.0 * stretchScaleFactor, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
-//
-//                let curveControlPoint = CGPoint(x: refreshIconView.center.x, y: refreshIconView.center.y + (bottomRoundCenter.y - refreshIconView.center.y) / 2)
-//
-//                let topRoundXOffset = 15 - 15 * stretchScaleFactor
-//                let bottomRoundXOffset = 13 - 13 * stretchScaleFactor
-//
-//                let topRoundLeftPoint = CGPoint(x: refreshIconView.center.x - topRoundXOffset, y: refreshIconView.center.y)
-//                let bottomRoundLeftPoint = CGPoint(x: bottomRoundCenter.x - bottomRoundXOffset, y: bottomRoundCenter.y)
-//                let topRoundRightPoint = CGPoint(x: refreshIconView.center.x + topRoundXOffset, y: refreshIconView.center.y)
-//                let bottomRoundRightPoint = CGPoint(x: bottomRoundCenter.x + bottomRoundXOffset, y: bottomRoundCenter.y)
-//                
-//                strokePath.move(to: topRoundLeftPoint)
-//                strokePath.addQuadCurve(to: bottomRoundLeftPoint, controlPoint: curveControlPoint)
-//                
-//                strokePath.move(to: topRoundRightPoint)
-//                strokePath.addQuadCurve(to: bottomRoundRightPoint, controlPoint: curveControlPoint)
-//                
+                strokePath.addArc(withCenter: bottomRoundCenter, radius: 15.0 * stretchScaleFactor * stretchScaleFactor, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
+
+                let curveControlPoint = CGPoint(x: 15.0, y: bottomRoundCenter.y - (bottomRoundCenter.y - 15.0) / 2.0)
+
+                let topRoundXOffset = 15.0 * stretchScaleFactor
+                let bottomRoundXOffset = 15.0 * stretchScaleFactor * stretchScaleFactor
+
+                let topRoundLeftPoint = CGPoint(x: 15.0 - topRoundXOffset, y: 15)
+                let bottomRoundLeftPoint = CGPoint(x: 15.0 - bottomRoundXOffset, y: bottomRoundCenter.y)
+
+                let topRoundRightPoint = CGPoint(x: 15.0 + topRoundXOffset, y: 15)
+                let bottomRoundRightPoint = CGPoint(x: bottomRoundCenter.x + bottomRoundXOffset, y: bottomRoundCenter.y)
+
+                strokePath.move(to: topRoundLeftPoint)
+                strokePath.addQuadCurve(to: bottomRoundLeftPoint, controlPoint: curveControlPoint)
+                strokePath.move(to: bottomRoundRightPoint)
+                strokePath.addQuadCurve(to: topRoundRightPoint, controlPoint: curveControlPoint)
+                
+                strokePath.close()
+                
+                stickyView.strokePath = strokePath
+
                 break;
             case .isRefreshing:
                 activityIndicatorView.startAnimating()
