@@ -68,8 +68,11 @@ class ZNStickyRefreshControl: UIControl {
             refreshView.parentViewHeight = height
         }
         
-        if height > refreshView.bounds.height && scrollView.isDragging {
+        if height > 30 && scrollView.isDragging {
             refreshView.state = .showStickyEffect
+            
+            addConstraint(NSLayoutConstraint(item: refreshView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
+            refreshView.updateConstraints()
         }
     }
     
@@ -87,7 +90,7 @@ class ZNStickyRefreshControl: UIControl {
 extension ZNStickyRefreshControl {
     fileprivate func setUI() {
         addSubview(refreshView)
-        
+        backgroundColor = UIColor.gray
         clipsToBounds = true
         
         refreshView.translatesAutoresizingMaskIntoConstraints = false
@@ -95,6 +98,6 @@ extension ZNStickyRefreshControl {
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: refreshView.bounds.width))
-        addConstraint(NSLayoutConstraint(item: refreshView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: refreshView.bounds.height))
+        addConstraint(NSLayoutConstraint(item: refreshView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
     }
 }

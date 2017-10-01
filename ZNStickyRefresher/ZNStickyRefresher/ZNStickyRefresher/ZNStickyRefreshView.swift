@@ -25,15 +25,15 @@ enum refreshState {
 /// display refresh effect
 class ZNStickyRefreshView: UIView {
     
+    @IBOutlet weak var stickyView: UIView!
     @IBOutlet weak var refreshIconView: UIImageView!
     
-    @IBOutlet weak var successIconView: UIImageView!
-    @IBOutlet weak var successInfoLabel: UILabel!
+    @IBOutlet weak var resultIconView: UIImageView!
+    @IBOutlet weak var resultInfoLabel: UILabel!
     
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     private let maxStretchHeight: CGFloat = 44
-    private let refreshHUD: CAShapeLayer = CAShapeLayer()
     
     /// store refresh control's height
     var parentViewHeight: CGFloat = 0 {
@@ -52,27 +52,26 @@ class ZNStickyRefreshView: UIView {
                 break;
             case .showStickyEffect:
                 // show refresh sticky effect
-                let stretchHeight = (parentViewHeight - self.bounds.height) / 2
+                addConstraint(NSLayoutConstraint(item: stickyView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 7.0))
                 
-                if stretchHeight > maxStretchHeight {
-                    // will refresh
-                    
-                    
-                    return
-                }
-                
-                let stretchScaleFactor = 1 - 0.5 * stretchHeight / maxStretchHeight
-                
-                refreshIconView.transform = CGAffineTransform(scaleX: stretchScaleFactor, y: stretchScaleFactor)
-                refreshIconView.center.y = 13 - stretchHeight
-                refreshHUD.position.y = 7 + 15 - stretchHeight
-                
+//                let stretchHeight = (parentViewHeight - self.bounds.height) / 2
+//                if stretchHeight > maxStretchHeight {
+//                    // will refresh
+//                    
+//                    
+//                    return
+//                }
+//                
+//                let stretchScaleFactor = 1 - 0.5 * stretchHeight / maxStretchHeight
+//                
+//                refreshIconView.transform = CGAffineTransform(scaleX: stretchScaleFactor, y: stretchScaleFactor)
+//                refreshIconView.center.y = 22 - stretchHeight
+//                refreshHUD.position = refreshIconView.center
                 // top round
                 
-                let strokePath = UIBezierPath()
-                
-                strokePath.move(to: refreshHUD.position)
-                strokePath.addArc(withCenter: CGPoint(x: 15, y: 15) , radius: 15 * stretchScaleFactor, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
+//                let strokePath = UIBezierPath()
+//                strokePath.move(to: CGPoint(x: 15, y: 15 - stretchHeight))
+//                strokePath.addArc(withCenter: CGPoint(x: 15, y: 15) , radius: 15 * stretchScaleFactor, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
 //                let bottomRoundCenter = CGPoint(x: refreshIconView.center.x, y: parentViewHeight - 15 - 7)
 //                strokePath.move(to: bottomRoundCenter)
 
@@ -95,7 +94,7 @@ class ZNStickyRefreshView: UIView {
 //                strokePath.move(to: topRoundRightPoint)
 //                strokePath.addQuadCurve(to: bottomRoundRightPoint, controlPoint: curveControlPoint)
 //                
-                refreshHUD.path = strokePath.cgPath
+//                refreshHUD.path = strokePath.cgPath
                 break;
             case .isRefreshing:
                 activityIndicatorView.startAnimating()
@@ -115,15 +114,17 @@ class ZNStickyRefreshView: UIView {
         
         // its frame is effective
         let refreshView = nib.instantiate(withOwner: nil, options: nil)[0] as! ZNStickyRefreshView
-        refreshView.refreshHUD.bounds = CGRect(x: 0, y: 0, width: 30, height: 30)
-        refreshView.refreshHUD.position = refreshView.center
-        refreshView.refreshHUD.fillColor = UIColor.lightGray.cgColor
-        
-        let originalPath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 15, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
-        
-        refreshView.refreshHUD.path = originalPath.cgPath
-        
-        refreshView.layer.insertSublayer(refreshView.refreshHUD, below: refreshView.refreshIconView.layer)
+        refreshView.refreshIconView.translatesAutoresizingMaskIntoConstraints = false
+        refreshView.stickyView.translatesAutoresizingMaskIntoConstraints = false;
+//        refreshView.refreshHUD.bounds = CGRect(x: 0, y: 0, width: 30, height: 30)
+//        
+//        refreshView.refreshHUD.position = refreshView.stickyView.center
+//        refreshView.refreshHUD.fillColor = UIColor.lightGray.cgColor
+//        
+//        let originalPath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 15, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
+//        
+//        refreshView.refreshHUD.path = originalPath.cgPath
+//        refreshView.stickyView.layer.addSublayer(refreshView.refreshHUD)
         
         return refreshView
     }
