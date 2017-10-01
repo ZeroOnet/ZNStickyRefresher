@@ -11,6 +11,11 @@ import UIKit
 class ZNStickyView: UIView {
     /// default stroke color
     var fillColor: UIColor = UIColor.black
+    var iconScale: CGFloat = 0 {
+        didSet {
+            refreshIconView.transform = CGAffineTransform(scaleX: iconScale, y: iconScale)
+        }
+    }
     
     var strokePath: UIBezierPath? {
         didSet {

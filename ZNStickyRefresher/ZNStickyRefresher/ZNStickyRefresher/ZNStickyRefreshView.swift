@@ -33,18 +33,9 @@ class ZNStickyRefreshView: UIView {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     private let maxStretchHeight: CGFloat = 44
-    private var stickyViewTopCons: NSLayoutConstraint {
-        return NSLayoutConstraint(item: self.stickyView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 7)
-    }
     
     /// store refresh control's height
-    var parentViewHeight: CGFloat = 0 {
-        didSet {
-//            print("paH: \(parentViewHeight)")
-//            print("sticY: \(stickyView.frame.origin.y)")
-//            print("refreH: \(self.bounds.height)")
-        }
-    }
+    var parentViewHeight: CGFloat = 0
     
     /// record current refresh state
     var state: refreshState = .Normal {
@@ -58,19 +49,16 @@ class ZNStickyRefreshView: UIView {
                 stickyView.frame.origin.y = 7
                 stickyView.frame.size.height = parentViewHeight - 14;
                 
-                // show refresh sticky effect
-//                addConstraint(NSLayoutConstraint(item: stickyView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 7.0))
+                let stretchHeight = parentViewHeight - maxStretchHeight
                 
-//                let stretchHeight = (parentViewHeight - self.bounds.height) / 2
-//                if stretchHeight > maxStretchHeight {
-//                    // will refresh
-//                    
-//                    
-//                    return
-//                }
-//                
-//                let stretchScaleFactor = 1 - 0.5 * stretchHeight / maxStretchHeight
-//                
+                if stretchHeight > maxStretchHeight {
+                    return
+                }
+
+                let stretchScaleFactor = 1 - 0.5 * stretchHeight / maxStretchHeight
+                
+                stickyView.iconScale = stretchScaleFactor
+//
 //                refreshIconView.transform = CGAffineTransform(scaleX: stretchScaleFactor, y: stretchScaleFactor)
 //                refreshIconView.center.y = 22 - stretchHeight
 //                refreshHUD.position = refreshIconView.center
