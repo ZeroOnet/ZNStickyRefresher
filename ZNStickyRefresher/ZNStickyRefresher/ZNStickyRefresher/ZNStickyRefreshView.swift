@@ -25,8 +25,7 @@ enum refreshState {
 /// display refresh effect
 class ZNStickyRefreshView: UIView {
     
-    @IBOutlet weak var stickyView: UIView!
-    @IBOutlet weak var refreshIconView: UIImageView!
+    @IBOutlet weak var stickyView: ZNStickyView!
     
     @IBOutlet weak var resultIconView: UIImageView!
     @IBOutlet weak var resultInfoLabel: UILabel!
@@ -51,8 +50,10 @@ class ZNStickyRefreshView: UIView {
             case .Normal:
                 break;
             case .showStickyEffect:
+//                print(stickyView.frame)
+                
                 // show refresh sticky effect
-                addConstraint(NSLayoutConstraint(item: stickyView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 7.0))
+//                addConstraint(NSLayoutConstraint(item: stickyView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 7.0))
                 
 //                let stretchHeight = (parentViewHeight - self.bounds.height) / 2
 //                if stretchHeight > maxStretchHeight {
@@ -114,17 +115,8 @@ class ZNStickyRefreshView: UIView {
         
         // its frame is effective
         let refreshView = nib.instantiate(withOwner: nil, options: nil)[0] as! ZNStickyRefreshView
-        refreshView.refreshIconView.translatesAutoresizingMaskIntoConstraints = false
-        refreshView.stickyView.translatesAutoresizingMaskIntoConstraints = false;
-//        refreshView.refreshHUD.bounds = CGRect(x: 0, y: 0, width: 30, height: 30)
-//        
-//        refreshView.refreshHUD.position = refreshView.stickyView.center
-//        refreshView.refreshHUD.fillColor = UIColor.lightGray.cgColor
-//        
-//        let originalPath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 15, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
-//        
-//        refreshView.refreshHUD.path = originalPath.cgPath
-//        refreshView.stickyView.layer.addSublayer(refreshView.refreshHUD)
+        refreshView.stickyView.fillColor = UIColor.lightGray
+        refreshView.stickyView.strokePath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 15, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
         
         return refreshView
     }

@@ -16,6 +16,7 @@
 		4F0DF6061F75407800B2810C /* ZNStickyRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DF6051F75407800B2810C /* ZNStickyRefreshControl.swift */; };
 		4F0DF6081F75416C00B2810C /* ZNStickyRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DF6071F75416B00B2810C /* ZNStickyRefreshView.swift */; };
 		4F0DF60A1F75435A00B2810C /* ZNStickyRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0DF6091F75435A00B2810C /* ZNStickyRefreshView.xib */; };
+		4F1976A51F80939000CD1676 /* ZNStickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1976A41F80939000CD1676 /* ZNStickyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		4F0DF6051F75407800B2810C /* ZNStickyRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZNStickyRefreshControl.swift; sourceTree = "<group>"; };
 		4F0DF6071F75416B00B2810C /* ZNStickyRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZNStickyRefreshView.swift; sourceTree = "<group>"; };
 		4F0DF6091F75435A00B2810C /* ZNStickyRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZNStickyRefreshView.xib; sourceTree = "<group>"; };
+		4F1976A41F80939000CD1676 /* ZNStickyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZNStickyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			children = (
 				4F0DF6051F75407800B2810C /* ZNStickyRefreshControl.swift */,
 				4F0DF6071F75416B00B2810C /* ZNStickyRefreshView.swift */,
+				4F1976A41F80939000CD1676 /* ZNStickyView.swift */,
 				4F0DF6091F75435A00B2810C /* ZNStickyRefreshView.xib */,
 			);
 			path = ZNStickyRefresher;
@@ -221,6 +224,7 @@
 			files = (
 				4F0DF5E71F75370500B2810C /* ViewController.swift in Sources */,
 				4F0DF6081F75416C00B2810C /* ZNStickyRefreshView.swift in Sources */,
+				4F1976A51F80939000CD1676 /* ZNStickyView.swift in Sources */,
 				4F0DF5E51F75370500B2810C /* AppDelegate.swift in Sources */,
 				4F0DF6061F75407800B2810C /* ZNStickyRefreshControl.swift in Sources */,
 			);

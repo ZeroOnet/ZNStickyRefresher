@@ -19,19 +19,11 @@
                     <rect key="frame" x="23" y="12" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjz-3x-xgI">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjz-3x-xgI" customClass="ZNStickyView" customModule="ZNStickyRefresher" customModuleProvider="target">
                     <rect key="frame" x="63" y="7" width="30" height="30"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="refreshIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jxj-EJ-7k1">
-                            <rect key="frame" x="3" y="3" width="24" height="24"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" red="0.27058823529999998" green="0.5450980392" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="jxj-EJ-7k1" firstAttribute="top" secondItem="zjz-3x-xgI" secondAttribute="top" constant="3" id="AVq-ZR-Tdz"/>
                         <constraint firstAttribute="height" constant="30" id="G9g-kr-MfY"/>
                         <constraint firstAttribute="width" constant="30" id="nIK-n9-Cpo"/>
-                        <constraint firstItem="jxj-EJ-7k1" firstAttribute="centerX" secondItem="zjz-3x-xgI" secondAttribute="centerX" id="vIj-gz-9pu"/>
                     </constraints>
                 </view>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cdY-oF-OcO">
@@ -55,7 +47,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="activityIndicatorView" destination="cdY-oF-OcO" id="Ecc-eO-eRS"/>
-                <outlet property="refreshIconView" destination="jxj-EJ-7k1" id="KeW-Kj-8E0"/>
                 <outlet property="resultIconView" destination="m1q-Eh-A2A" id="cVE-2G-7cS"/>
                 <outlet property="resultInfoLabel" destination="dDy-BK-3T1" id="oR3-9K-LFk"/>
                 <outlet property="stickyView" destination="zjz-3x-xgI" id="xTH-z3-KgL"/>
@@ -64,7 +55,6 @@
         </view>
     </objects>
     <resources>
-        <image name="refreshIcon" width="24" height="24"/>
         <image name="successIcon" width="24" height="24"/>
     </resources>
 </document>
