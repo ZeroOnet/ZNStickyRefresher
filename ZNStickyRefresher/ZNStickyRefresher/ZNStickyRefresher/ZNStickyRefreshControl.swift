@@ -68,8 +68,12 @@ class ZNStickyRefreshControl: UIControl {
             refreshView.parentViewHeight = height
         }
         
-        if height > 44 && scrollView.isDragging {
+        if height >= 44 && scrollView.isDragging {
             refreshView.state = .showStickyEffect
+        }
+        
+        if height < 44 {
+            refreshView.state = .Normal
         }
     }
     

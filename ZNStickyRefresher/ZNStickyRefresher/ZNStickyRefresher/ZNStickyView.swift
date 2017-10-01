@@ -15,13 +15,13 @@ class ZNStickyView: UIView {
     var strokePath: UIBezierPath? {
         didSet {
             // update stroke path
-            stickyLayer?.path = strokePath?.cgPath
-            stickyLayer?.fillColor = fillColor.cgColor
+            stickyLayer.path = strokePath?.cgPath
+            stickyLayer.fillColor = fillColor.cgColor
         }
     }
     
-    fileprivate var stickyLayer: CAShapeLayer?
-    fileprivate var refreshIconView: UIImageView?
+    fileprivate var stickyLayer: CAShapeLayer = CAShapeLayer()
+    fileprivate var refreshIconView: UIImageView = UIImageView(image: #imageLiteral(resourceName: "refreshIcon"))
     
     // MARK: - constructor
     override init(frame: CGRect) {
@@ -39,19 +39,23 @@ class ZNStickyView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        stickyLayer?.frame = self.bounds
-        refreshIconView?.frame = self.bounds.insetBy(dx: 5, dy: 5)
+        stickyLayer.frame = self.bounds
+        
+        addConstraint(NSLayoutConstraint(item: refreshIconView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 5))
+        addConstraint(NSLayoutConstraint(item: refreshIconView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 5))
+        addConstraint(NSLayoutConstraint(item: refreshIconView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20))
+        addConstraint(NSLayoutConstraint(item: refreshIconView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20))
     }
 }
 
 extension ZNStickyView {
     fileprivate func setUI() {
-        stickyLayer = CAShapeLayer()
+        refreshIconView.contentMode = .scaleAspectFit
+        refreshIconView.translatesAutoresizingMaskIntoConstraints = false
         
-        refreshIconView = UIImageView(image: #imageLiteral(resourceName: "refreshIcon"))
-        refreshIconView!.contentMode = .scaleAspectFit
+        layer.addSublayer(stickyLayer)
+        addSubview(refreshIconView)
         
-        layer.addSublayer(stickyLayer!)
-        addSubview(refreshIconView!)
+        backgroundColor = UIColor.black
     }
 }

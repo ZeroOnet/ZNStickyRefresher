@@ -33,6 +33,9 @@ class ZNStickyRefreshView: UIView {
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     private let maxStretchHeight: CGFloat = 44
+    private var stickyViewTopCons: NSLayoutConstraint {
+        return NSLayoutConstraint(item: self.stickyView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 7)
+    }
     
     /// store refresh control's height
     var parentViewHeight: CGFloat = 0 {
@@ -48,9 +51,12 @@ class ZNStickyRefreshView: UIView {
         didSet {
             switch state {
             case .Normal:
+                stickyView.center = CGPoint(x: self.bounds.width / 2.0, y: self.bounds.height / 2.0)
+                
                 break;
             case .showStickyEffect:
-//                print(stickyView.frame)
+                stickyView.frame.origin.y = 7
+                stickyView.frame.size.height = parentViewHeight - 14;
                 
                 // show refresh sticky effect
 //                addConstraint(NSLayoutConstraint(item: stickyView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 7.0))
@@ -113,7 +119,6 @@ class ZNStickyRefreshView: UIView {
     class func refreshView() -> ZNStickyRefreshView {
         let nib = UINib(nibName: "ZNStickyRefreshView", bundle: nil)
         
-        // its frame is effective
         let refreshView = nib.instantiate(withOwner: nil, options: nil)[0] as! ZNStickyRefreshView
         refreshView.stickyView.fillColor = UIColor.lightGray
         refreshView.stickyView.strokePath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 15, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
