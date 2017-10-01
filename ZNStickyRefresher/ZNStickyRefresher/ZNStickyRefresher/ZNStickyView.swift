@@ -45,11 +45,12 @@ class ZNStickyView: UIView {
         super.layoutSubviews()
         
         stickyLayer.frame = self.bounds
+        refreshIconView.frame = CGRect(x: 5, y: 5, width: 20, height: 20)
         
-        addConstraint(NSLayoutConstraint(item: refreshIconView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 5))
-        addConstraint(NSLayoutConstraint(item: refreshIconView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 5))
-        addConstraint(NSLayoutConstraint(item: refreshIconView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20))
-        addConstraint(NSLayoutConstraint(item: refreshIconView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20))
+//        addConstraint(NSLayoutConstraint(item: refreshIconView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 5))
+//        addConstraint(NSLayoutConstraint(item: refreshIconView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 5))
+//        addConstraint(NSLayoutConstraint(item: refreshIconView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20))
+//        addConstraint(NSLayoutConstraint(item: refreshIconView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 20))
     }
 }
 
@@ -58,9 +59,9 @@ extension ZNStickyView {
         refreshIconView.contentMode = .scaleAspectFit
         refreshIconView.translatesAutoresizingMaskIntoConstraints = false
         
+        stickyLayer.backgroundColor = UIColor.blue.cgColor
+        
         layer.addSublayer(stickyLayer)
         addSubview(refreshIconView)
-        
-        backgroundColor = UIColor.black
     }
 }

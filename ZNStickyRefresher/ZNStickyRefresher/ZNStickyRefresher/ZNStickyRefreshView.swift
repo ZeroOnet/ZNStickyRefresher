@@ -58,15 +58,11 @@ class ZNStickyRefreshView: UIView {
                 let stretchScaleFactor = 1 - 0.5 * stretchHeight / maxStretchHeight
                 
                 stickyView.iconScale = stretchScaleFactor
-//
-//                refreshIconView.transform = CGAffineTransform(scaleX: stretchScaleFactor, y: stretchScaleFactor)
-//                refreshIconView.center.y = 22 - stretchHeight
-//                refreshHUD.position = refreshIconView.center
+
                 // top round
+                let strokePath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 15.0 * stretchScaleFactor, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
+                stickyView.strokePath = strokePath
                 
-//                let strokePath = UIBezierPath()
-//                strokePath.move(to: CGPoint(x: 15, y: 15 - stretchHeight))
-//                strokePath.addArc(withCenter: CGPoint(x: 15, y: 15) , radius: 15 * stretchScaleFactor, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
 //                let bottomRoundCenter = CGPoint(x: refreshIconView.center.x, y: parentViewHeight - 15 - 7)
 //                strokePath.move(to: bottomRoundCenter)
 
@@ -89,7 +85,6 @@ class ZNStickyRefreshView: UIView {
 //                strokePath.move(to: topRoundRightPoint)
 //                strokePath.addQuadCurve(to: bottomRoundRightPoint, controlPoint: curveControlPoint)
 //                
-//                refreshHUD.path = strokePath.cgPath
                 break;
             case .isRefreshing:
                 activityIndicatorView.startAnimating()
