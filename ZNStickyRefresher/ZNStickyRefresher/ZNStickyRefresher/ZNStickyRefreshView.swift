@@ -34,6 +34,10 @@ class ZNStickyRefreshView: UIView {
     
     private let maxStretchHeight: CGFloat = 44
     
+    private class var stickyViewDefaultStrokePath: UIBezierPath {
+        return UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 15, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
+    }
+    
     /// store refresh control's height
     var parentViewHeight: CGFloat = 0
     
@@ -43,11 +47,12 @@ class ZNStickyRefreshView: UIView {
             switch state {
             case .Normal:
                 stickyView.center = CGPoint(x: self.bounds.width / 2.0, y: self.bounds.height / 2.0)
+//                stickyView.strokePath = stickyViewDefaultStrokePath
                 
                 break;
             case .showStickyEffect:
                 stickyView.frame.origin.y = 7
-                stickyView.frame.size.height = parentViewHeight - 14;
+//                stickyView.frame.size.height = parentViewHeight - 14;
                 
                 let stretchHeight = parentViewHeight - maxStretchHeight
                 
@@ -62,7 +67,7 @@ class ZNStickyRefreshView: UIView {
                 // top half round
                 let strokePath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 15.0 * stretchScaleFactor, startAngle: .pi, endAngle: 2.0 * .pi, clockwise: true)
     
-                let bottomRoundCenter = CGPoint(x: 15, y: stickyView.bounds.height - 15 * stretchScaleFactor * stretchScaleFactor)
+                let bottomRoundCenter = CGPoint(x: 15, y: parentViewHeight - 14 - 15 * stretchScaleFactor * stretchScaleFactor)
 
                 let topRoundXOffset = 15.0 * stretchScaleFactor
                 let bottomRoundXOffset = 15.0 * stretchScaleFactor * stretchScaleFactor
@@ -95,6 +100,12 @@ class ZNStickyRefreshView: UIView {
         }
     }
     
+    override func willMove(toSuperview newSuperview: UIView?) {
+        superview?.willMove(toSuperview: newSuperview)
+        
+        backgroundColor = superview?.backgroundColor
+    }
+    
     /// return a instance of ZNStickyRefreshView
     ///
     /// - Returns: a instance load from nib file
@@ -102,8 +113,8 @@ class ZNStickyRefreshView: UIView {
         let nib = UINib(nibName: "ZNStickyRefreshView", bundle: nil)
         
         let refreshView = nib.instantiate(withOwner: nil, options: nil)[0] as! ZNStickyRefreshView
-        refreshView.stickyView.fillColor = UIColor.lightGray
-        refreshView.stickyView.strokePath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 15, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
+        refreshView.stickyView.fillColor = UIColor.darkGray.withAlphaComponent(0.6)
+        refreshView.stickyView.strokePath = stickyViewDefaultStrokePath
         
         return refreshView
     }

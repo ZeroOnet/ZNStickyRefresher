@@ -74,7 +74,7 @@ class ZNStickyRefreshControl: UIControl {
         
         if height < 44 {
             refreshView.state = .Normal
-        }
+        } 
     }
     
     // FIXME: - start refreshing
@@ -91,7 +91,7 @@ class ZNStickyRefreshControl: UIControl {
 extension ZNStickyRefreshControl {
     fileprivate func setUI() {
         addSubview(refreshView)
-        backgroundColor = UIColor.gray
+        backgroundColor = superview?.backgroundColor
         clipsToBounds = true
         
         refreshView.translatesAutoresizingMaskIntoConstraints = false

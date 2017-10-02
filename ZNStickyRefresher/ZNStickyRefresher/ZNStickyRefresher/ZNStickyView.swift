@@ -56,11 +56,7 @@ class ZNStickyView: UIView {
 
 extension ZNStickyView {
     fileprivate func setUI() {
-        refreshIconView.contentMode = .scaleAspectFit
         refreshIconView.translatesAutoresizingMaskIntoConstraints = false
-
-        stickyLayer.backgroundColor = UIColor.blue.cgColor
-//        stickyLayer.strokeColor = UIColor.darkGray.cgColor
         
         layer.addSublayer(stickyLayer)
         addSubview(refreshIconView)
