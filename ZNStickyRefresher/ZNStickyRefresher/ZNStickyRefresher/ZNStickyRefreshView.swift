@@ -54,6 +54,7 @@ class ZNStickyRefreshView: UIView {
                 break;
             case .showStickyEffect:
                 stickyView.frame.origin.y = 7
+                stickyView.frame.size.height = parentViewHeight - 14
                 
                 let stretchHeight = parentViewHeight - maxStretchHeight
                 
@@ -96,9 +97,19 @@ class ZNStickyRefreshView: UIView {
 
                 break;
             case .isRefreshing:
-                activityIndicatorView.startAnimating()
                 
-                
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.stickyView.alpha = 0
+                    self.stickyView.frame.size.height = 0
+                    
+                }, completion: { _ in
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                        self.activityIndicatorView.startAnimating()
+                    }
+                    
+                    
+//                    self.stickyView.strokePath = ZNStickyRefreshView.stickyViewDefaultStrokePath
+                })
                 
             case .failedRefreshing:
                 activityIndicatorView.stopAnimating()

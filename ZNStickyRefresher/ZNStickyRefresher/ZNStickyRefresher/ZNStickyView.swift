@@ -57,6 +57,7 @@ class ZNStickyView: UIView {
 extension ZNStickyView {
     fileprivate func setUI() {
         refreshIconView.translatesAutoresizingMaskIntoConstraints = false
+        clipsToBounds = true
         
         layer.addSublayer(stickyLayer)
         addSubview(refreshIconView)
