@@ -69,13 +69,15 @@ class ZNStickyRefreshControl: UIControl {
             refreshView.parentViewHeight = height
         }
         
-        if height >= 44 && scrollView.isDragging {
+        if height >= 44 && scrollView.isDragging && height <= 88{
             refreshView.state = .showStickyEffect
-        }
-        
-        if height < 44 {
+        } else if height < 44 {
             refreshView.state = .Normal
-        } 
+        } else if height > 88 {
+            refreshView.state = .isRefreshing
+            
+            sendActions(for: .valueChanged)
+        }
     }
     
     // FIXME: - start refreshing

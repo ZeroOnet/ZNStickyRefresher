@@ -46,6 +46,7 @@ class ZNStickyRefreshView: UIView {
         didSet {
             switch state {
             case .Normal:
+                // sticky view defalut status
                 stickyView.center = CGPoint(x: self.bounds.width / 2.0, y: self.bounds.height / 2.0)
                 stickyView.strokePath = ZNStickyRefreshView.stickyViewDefaultStrokePath
                 stickyView.iconScale = 1.0
@@ -56,9 +57,13 @@ class ZNStickyRefreshView: UIView {
                 
                 let stretchHeight = parentViewHeight - maxStretchHeight
                 
-                if stretchHeight > maxStretchHeight {
-                    return
-                }
+//                if stretchHeight > maxStretchHeight {
+//                    if state != .isRefreshing {
+//                        state = .isRefreshing
+//                    }
+//                    
+//                    return
+//                }
 
                 let stretchScaleFactor = 1 - 0.6 * stretchHeight / maxStretchHeight
                 
@@ -91,10 +96,18 @@ class ZNStickyRefreshView: UIView {
 
                 break;
             case .isRefreshing:
+//                activityIndicatorView.isHidden = false
                 activityIndicatorView.startAnimating()
+                
+                
+                
             case .failedRefreshing:
+                activityIndicatorView.stopAnimating()
+                
                 break;
             case .succeededRefreshing:
+                activityIndicatorView.stopAnimating()
+                
                 break;
             }
         }
