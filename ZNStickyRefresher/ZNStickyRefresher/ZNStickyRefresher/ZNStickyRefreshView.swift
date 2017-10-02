@@ -96,7 +96,6 @@ class ZNStickyRefreshView: UIView {
 
                 break;
             case .isRefreshing:
-//                activityIndicatorView.isHidden = false
                 activityIndicatorView.startAnimating()
                 
                 
@@ -104,9 +103,35 @@ class ZNStickyRefreshView: UIView {
             case .failedRefreshing:
                 activityIndicatorView.stopAnimating()
                 
+                self.resultIconView.image = #imageLiteral(resourceName: "failureIcon")
+                self.resultInfoLabel.text = "刷新失败"
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.resultIconView.isHidden = false
+                    self.resultInfoLabel.isHidden = false
+                }, completion: { _ in
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5, execute: {
+                        self.resultIconView.isHidden = true
+                        self.resultInfoLabel.isHidden = true
+                    })
+                })
+                
                 break;
             case .succeededRefreshing:
                 activityIndicatorView.stopAnimating()
+                
+                self.resultIconView.image = #imageLiteral(resourceName: "successIcon")
+                self.resultInfoLabel.text = "刷新成功"
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.resultIconView.isHidden = false
+                    self.resultInfoLabel.isHidden = false
+                }, completion: { _ in
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5, execute: {
+                        self.resultIconView.isHidden = true
+                        self.resultInfoLabel.isHidden = true
+                    })
+                })
                 
                 break;
             }
