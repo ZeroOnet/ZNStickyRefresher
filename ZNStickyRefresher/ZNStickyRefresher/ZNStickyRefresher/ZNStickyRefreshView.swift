@@ -70,23 +70,17 @@ class ZNStickyRefreshView: UIView {
                 let topCurveLeftControlPoint = CGPoint(x: 15.0 - bottomRoundXOffset, y: 15 + (bottomRoundCenter.y - 15) / 2)
                 let topCurveRightControlPoint = CGPoint(x: 15.0 + bottomRoundXOffset, y: 15 + (bottomRoundCenter.y - 15) / 2)
                 
-//                let leftCurveToPoint = CGPoint(x: 15 - bottomRoundXOffset * 1.1, y: (bottomRoundCenter.y - 15) * 0.8 + 15)
-//                let rightCurveToPoint = CGPoint(x: 15 + bottomRoundXOffset * 1.1, y: (bottomRoundCenter.y - 15) * 0.8 + 15)
-
-
                 let topRoundLeftPoint = CGPoint(x: 15.0 - topRoundXOffset, y: 15)
                 
-//                let bottomRoundLeftPoint = CGPoint(x: bottomRoundCenter.x - bottomRoundXOffset, y: bottomRoundCenter.y)
-
+                // right curve
                 let bottomRoundRightPoint = CGPoint(x: bottomRoundCenter.x + bottomRoundXOffset, y: bottomRoundCenter.y)
                 strokePath.addQuadCurve(to: bottomRoundRightPoint, controlPoint: topCurveRightControlPoint)
-//                strokePath.addLine(to: bottomRoundRightPoint)
                 
                 // bottom half round
                 strokePath.addArc(withCenter: bottomRoundCenter, radius: 15.0 * stretchScaleFactor * stretchScaleFactor, startAngle: 0, endAngle: .pi, clockwise: true)
                 
+                // left curve
                 strokePath.addQuadCurve(to: topRoundLeftPoint, controlPoint: topCurveLeftControlPoint)
-//                strokePath.addLine(to: bottomRoundLeftPoint)
                 
                 stickyView.strokePath = strokePath
 
