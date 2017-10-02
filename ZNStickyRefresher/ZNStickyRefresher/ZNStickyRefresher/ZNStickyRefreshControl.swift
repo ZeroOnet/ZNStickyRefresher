@@ -64,6 +64,7 @@ class ZNStickyRefreshControl: UIControl {
                             y: -height,
                             width: scrollView.bounds.width,
                             height: height)
+        
         if refreshView.state != .isRefreshing {
             refreshView.parentViewHeight = height
         }

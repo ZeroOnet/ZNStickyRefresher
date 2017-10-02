@@ -47,12 +47,12 @@ class ZNStickyRefreshView: UIView {
             switch state {
             case .Normal:
                 stickyView.center = CGPoint(x: self.bounds.width / 2.0, y: self.bounds.height / 2.0)
-//                stickyView.strokePath = stickyViewDefaultStrokePath
+                stickyView.strokePath = ZNStickyRefreshView.stickyViewDefaultStrokePath
+                stickyView.iconScale = 1.0
                 
                 break;
             case .showStickyEffect:
                 stickyView.frame.origin.y = 7
-//                stickyView.frame.size.height = parentViewHeight - 14;
                 
                 let stretchHeight = parentViewHeight - maxStretchHeight
                 
