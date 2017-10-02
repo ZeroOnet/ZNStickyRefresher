@@ -60,7 +60,7 @@ extension ZNStickyView {
         refreshIconView.translatesAutoresizingMaskIntoConstraints = false
 
         stickyLayer.backgroundColor = UIColor.blue.cgColor
-        stickyLayer.lineWidth = 2.0
+//        stickyLayer.strokeColor = UIColor.darkGray.cgColor
         
         layer.addSublayer(stickyLayer)
         addSubview(refreshIconView)
