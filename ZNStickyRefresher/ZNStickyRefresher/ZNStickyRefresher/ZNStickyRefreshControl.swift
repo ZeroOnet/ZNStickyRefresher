@@ -52,7 +52,11 @@ class ZNStickyRefreshControl: UIControl {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let scrollView = scrollView else { return }
         
-        let height = -(scrollView.contentInset.top + scrollView.contentOffset.y)
+        let isRefreshing = refreshView.state == .isRefreshing
+        
+        let topInset = isRefreshing ? 64 : scrollView.contentInset.top
+        
+        let height = -(topInset + scrollView.contentOffset.y)
         
         // drag and drop up from original point
         if height < 0 {
@@ -63,18 +67,21 @@ class ZNStickyRefreshControl: UIControl {
         self.frame = CGRect(x: 0,
                             y: -height,
                             width: scrollView.bounds.width,
-                            height: height)
+                            height: isRefreshing ? 44 : height)
         
-        if refreshView.state != .isRefreshing {
+        if !isRefreshing {
             refreshView.parentViewHeight = height
+        } else {
+            return
         }
         
         if height >= 44 && scrollView.isDragging && height <= 88{
             refreshView.state = .showStickyEffect
         } else if height < 44 {
             refreshView.state = .Normal
-        } else if height > 88 {
-            refreshView.state = .isRefreshing
+        } else if height > 88 && refreshView.state != .isRefreshing {
+            print(self.frame)
+            beginRefreshing()
             
             sendActions(for: .valueChanged)
         }
@@ -82,19 +89,49 @@ class ZNStickyRefreshControl: UIControl {
     
     // FIXME: - start refreshing
     func beginRefreshing() {
+        print("begin refreshing")
         
+        guard let scrollView = scrollView else { return }
+        
+        if refreshView.state == .isRefreshing {
+            return
+        }
+        
+        refreshView.state = .isRefreshing
+        
+        var contentInset = scrollView.contentInset
+        contentInset.top += 44
+        scrollView.contentInset = contentInset
+        
+        print(self.frame)
+        
+        refreshView.parentViewHeight = 44
     }
     
     // FIXME: - finish refreshing
     func endRefreshing() {
+        guard let scrollView = scrollView else { return }
         
+        if refreshView.state != .isRefreshing {
+            return
+        }
+        
+        refreshView.state = .Normal
+        
+        var contentInset = scrollView.contentInset
+        contentInset.top -= 44
+        
+        scrollView.contentInset = contentInset
+        
+        refreshView.parentViewHeight = 0
     }
 }
 
 extension ZNStickyRefreshControl {
     fileprivate func setUI() {
         addSubview(refreshView)
-        backgroundColor = superview?.backgroundColor
+        backgroundColor = UIColor.gray
+//        backgroundColor = superview?.backgroundColor
         clipsToBounds = true
         
         refreshView.translatesAutoresizingMaskIntoConstraints = false
