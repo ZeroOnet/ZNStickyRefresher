@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UITableViewController {
+
+    fileprivate var cellsCount = 1
     
     lazy var stickyRefreshControl: ZNStickyRefreshControl = {
         let result = ZNStickyRefreshControl()
@@ -26,14 +28,21 @@ class ViewController: UITableViewController {
     }
     
     @objc private func loadData() {
-        
+        // simulate network time waste
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) { 
+            self.cellsCount += 1
+            
+            self.tableView.reloadData()
+            
+            self.stickyRefreshControl.endRefreshing()
+        }
     }
 }
 
 // MARK: - table view data source
 extension ViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return cellsCount
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

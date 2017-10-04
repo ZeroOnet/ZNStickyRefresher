@@ -48,8 +48,12 @@ class ZNStickyRefreshView: UIView {
             case .Normal:
                 // sticky view defalut status
                 stickyView.center = CGPoint(x: self.bounds.width / 2.0, y: self.bounds.height / 2.0)
+                stickyView.frame.size.height = 30
                 stickyView.strokePath = ZNStickyRefreshView.stickyViewDefaultStrokePath
                 stickyView.iconScale = 1.0
+                stickyView.alpha = 1.0
+                resultIconView.alpha = 0
+                resultInfoLabel.alpha = 0
                 
                 break;
             case .showStickyEffect:
@@ -98,12 +102,12 @@ class ZNStickyRefreshView: UIView {
                 break;
             case .isRefreshing:
                 
-                UIView.animate(withDuration: 0.25, animations: {
+                UIView.animate(withDuration: 0.15, animations: {
                     self.stickyView.alpha = 0
                     self.stickyView.frame.size.height = 0
                     
                 }, completion: { _ in
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                         self.activityIndicatorView.startAnimating()
                     }
                     
@@ -118,13 +122,13 @@ class ZNStickyRefreshView: UIView {
                 self.resultInfoLabel.text = "刷新失败"
                 
                 UIView.animate(withDuration: 0.5, animations: {
-                    self.resultIconView.isHidden = false
-                    self.resultInfoLabel.isHidden = false
+                    self.resultIconView.alpha = 1
+                    self.resultInfoLabel.alpha = 1
                 }, completion: { _ in
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5, execute: {
-                        self.resultIconView.isHidden = true
-                        self.resultInfoLabel.isHidden = true
-                    })
+//                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+//                        self.resultIconView.alpha = 0
+//                        self.resultInfoLabel.alpha = 0
+//                    })
                 })
                 
                 break;
@@ -135,13 +139,13 @@ class ZNStickyRefreshView: UIView {
                 self.resultInfoLabel.text = "刷新成功"
                 
                 UIView.animate(withDuration: 0.5, animations: {
-                    self.resultIconView.isHidden = false
-                    self.resultInfoLabel.isHidden = false
+                    self.resultIconView.alpha = 1
+                    self.resultInfoLabel.alpha = 1
                 }, completion: { _ in
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5, execute: {
-                        self.resultIconView.isHidden = true
-                        self.resultInfoLabel.isHidden = true
-                    })
+//                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5, execute: {
+//                        self.resultIconView.alpha = 0
+//                        self.resultInfoLabel.alpha = 0
+//                    })
                 })
                 
                 break;

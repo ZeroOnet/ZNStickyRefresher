@@ -11,6 +11,9 @@ import UIKit
 /// finish refreshing control logic
 class ZNStickyRefreshControl: UIControl {
     
+    /// refresh result tag
+    var isSuccessful = false
+    
     /// refresher's container view
     private weak var scrollView: UIScrollView?
     
@@ -67,8 +70,9 @@ class ZNStickyRefreshControl: UIControl {
         self.frame = CGRect(x: 0,
                             y: -height,
                             width: scrollView.bounds.width,
-                            height: isRefreshing ? 44 : height)
+                            height: height)
         
+        // FIXME: - the issue of jumping frame
         if !isRefreshing {
             refreshView.parentViewHeight = height
         } else {
@@ -116,14 +120,21 @@ class ZNStickyRefreshControl: UIControl {
             return
         }
         
-        refreshView.state = .Normal
+        refreshView.state = isSuccessful ? .succeededRefreshing : .failedRefreshing
+        
         
         var contentInset = scrollView.contentInset
         contentInset.top -= 44
         
-        scrollView.contentInset = contentInset
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            UIView.animate(withDuration: 0.5) {
+                scrollView.contentInset = contentInset
+            }
+        }
         
         refreshView.parentViewHeight = 0
+        
+        refreshView.state = .Normal
     }
 }
 
