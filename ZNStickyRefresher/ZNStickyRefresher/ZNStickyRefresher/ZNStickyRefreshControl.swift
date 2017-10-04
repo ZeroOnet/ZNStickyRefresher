@@ -78,7 +78,7 @@ class ZNStickyRefreshControl: UIControl {
         } else {
             return
         }
-        
+        print(scrollView.contentOffset.y)
         // isDecelerating
         
         if height >= 44 && scrollView.isDragging && height <= 88{
@@ -139,6 +139,8 @@ extension ZNStickyRefreshControl {
         
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: refreshView.bounds.width))
+//        addConstraint(NSLayoutConstraint(item: refreshView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: refreshView.bounds.height))
+//        addConstraint(NSLayoutConstraint(item: refreshView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
     }
@@ -148,7 +150,8 @@ extension ZNStickyRefreshControl {
         contentInset.top += (isEnd ? -44 : 44)
         
         if !isEnd {
-           withScrollView.contentInset = contentInset
+            withScrollView.contentInset = contentInset
+            withScrollView.contentOffset.y -= 44
         } else {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                 UIView.animate(withDuration: 0.5, animations: {
