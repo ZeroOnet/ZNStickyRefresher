@@ -84,12 +84,12 @@ class ZNStickyRefreshControl: UIControl {
         } else if height < 44 {
             refreshView.state = .Normal
         } else if height > 88 && refreshView.state != .isRefreshing {
-            print(self.frame)
+//            print(self.frame)
             beginRefreshing()
         }
     }
     
-    // FIXME: - start refreshing
+    // start refreshing
     func beginRefreshing() {
         print("begin refreshing")
         
@@ -101,18 +101,14 @@ class ZNStickyRefreshControl: UIControl {
         
         refreshView.state = .isRefreshing
         
-        var contentInset = scrollView.contentInset
-        contentInset.top += 44
-        scrollView.contentInset = contentInset
+        adjustScrollViewContentInset(withScrollView: scrollView, isEnd: false, completion: nil)
         
-        print(self.frame)
-        
-        refreshView.parentViewHeight = 44
+//        print(self.frame)
         
         sendActions(for: .valueChanged)
     }
     
-    // FIXME: - finish refreshing
+    // finish refreshing
     func endRefreshing() {
         guard let scrollView = scrollView else { return }
         
@@ -122,19 +118,11 @@ class ZNStickyRefreshControl: UIControl {
         
         refreshView.state = isSuccessful ? .succeededRefreshing : .failedRefreshing
         
-        
-        var contentInset = scrollView.contentInset
-        contentInset.top -= 44
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            UIView.animate(withDuration: 0.5, animations: {
-                scrollView.contentInset = contentInset
-            }, completion: { _ in
-                self.refreshView.parentViewHeight = 0
-                
-                self.refreshView.state = .Normal
-            })
+        adjustScrollViewContentInset(withScrollView: scrollView, isEnd: true) { 
+            self.refreshView.state = .Normal
         }
+        
+        print("end refreshing")
     }
 }
 
@@ -151,5 +139,22 @@ extension ZNStickyRefreshControl {
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: refreshView.bounds.width))
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
+    }
+    
+    fileprivate func adjustScrollViewContentInset(withScrollView: UIScrollView, isEnd: Bool, completion:(()->())?) {
+        var contentInset = withScrollView.contentInset
+        contentInset.top += (isEnd ? -44 : 44)
+        
+        if !isEnd {
+           withScrollView.contentInset = contentInset
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                UIView.animate(withDuration: 0.5, animations: {
+                    withScrollView.contentInset = contentInset
+                }, completion: { _ in
+                    completion?()
+                })
+            }
+        }
     }
 }
