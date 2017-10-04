@@ -78,15 +78,12 @@ class ZNStickyRefreshControl: UIControl {
         } else {
             return
         }
-        print(scrollView.contentOffset.y)
-        // isDecelerating
         
         if height >= 44 && scrollView.isDragging && height <= 88{
             refreshView.state = .showStickyEffect
         } else if height < 44 {
             refreshView.state = .normal
         } else if height > 88 && refreshView.state != .isRefreshing {
-//            print(self.frame)
             beginRefreshing()
         }
     }
@@ -104,9 +101,7 @@ class ZNStickyRefreshControl: UIControl {
         refreshView.state = .isRefreshing
         
         adjustScrollViewContentInset(withScrollView: scrollView, isEnd: false, completion: nil)
-        
-//        print(self.frame)
-        
+    
         sendActions(for: .valueChanged)
     }
     
@@ -139,8 +134,6 @@ extension ZNStickyRefreshControl {
         
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: refreshView.bounds.width))
-//        addConstraint(NSLayoutConstraint(item: refreshView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: refreshView.bounds.height))
-//        addConstraint(NSLayoutConstraint(item: refreshView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: refreshView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0.0))
     }
