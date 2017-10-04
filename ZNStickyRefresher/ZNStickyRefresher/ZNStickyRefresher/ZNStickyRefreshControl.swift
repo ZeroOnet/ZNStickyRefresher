@@ -72,7 +72,6 @@ class ZNStickyRefreshControl: UIControl {
                             width: scrollView.bounds.width,
                             height: height)
         
-        // FIXME: - the issue of jumping frame
         if !isRefreshing {
             refreshView.parentViewHeight = height
         } else {
@@ -144,6 +143,8 @@ extension ZNStickyRefreshControl {
         
         if !isEnd {
             withScrollView.contentInset = contentInset
+            
+            // fix the issue of jumping frame
             withScrollView.contentOffset.y -= 44
         } else {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
