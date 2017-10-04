@@ -12,7 +12,7 @@ import UIKit
 class ZNStickyRefreshControl: UIControl {
     
     /// refresh result tag
-    var isSuccessful = false
+    var isSuccessful = true
     
     /// refresher's container view
     private weak var scrollView: UIScrollView?
@@ -86,8 +86,6 @@ class ZNStickyRefreshControl: UIControl {
         } else if height > 88 && refreshView.state != .isRefreshing {
             print(self.frame)
             beginRefreshing()
-            
-            sendActions(for: .valueChanged)
         }
     }
     
@@ -110,6 +108,8 @@ class ZNStickyRefreshControl: UIControl {
         print(self.frame)
         
         refreshView.parentViewHeight = 44
+        
+        sendActions(for: .valueChanged)
     }
     
     // FIXME: - finish refreshing
@@ -127,14 +127,14 @@ class ZNStickyRefreshControl: UIControl {
         contentInset.top -= 44
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.5, animations: {
                 scrollView.contentInset = contentInset
-            }
+            }, completion: { _ in
+                self.refreshView.parentViewHeight = 0
+                
+                self.refreshView.state = .Normal
+            })
         }
-        
-        refreshView.parentViewHeight = 0
-        
-        refreshView.state = .Normal
     }
 }
 
