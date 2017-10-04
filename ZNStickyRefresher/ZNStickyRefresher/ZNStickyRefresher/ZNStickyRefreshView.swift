@@ -11,9 +11,14 @@ import UIKit
 enum refreshState {
     
     /// original state
+    case original
+    
+    /// start pulling
     case normal
+    
     /// display main sticky refresh effect
     case showStickyEffect
+    
     /// show refreshing effect
     case isRefreshing
     
@@ -42,21 +47,25 @@ class ZNStickyRefreshView: UIView {
     var parentViewHeight: CGFloat = 0
     
     /// record current refresh state
-    var state: refreshState = .normal {
+    var state: refreshState = .original {
         didSet {
             switch state {
-            case .normal:
-                // sticky view defalut status
-                stickyView.center = CGPoint(x: self.bounds.width / 2.0, y: self.bounds.height / 2.0)
+            case .original:
                 stickyView.frame.size.height = 30
-                stickyView.strokePath = ZNStickyRefreshView.stickyViewDefaultStrokePath
                 stickyView.iconScale = 1.0
                 stickyView.alpha = 1.0
                 resultIconView.alpha = 0
                 resultInfoLabel.alpha = 0
+                
+                break
+            case .normal:
+                // sticky view defalut status
+                stickyView.center = CGPoint(x: self.bounds.width / 2.0, y: self.bounds.height / 2.0)
+                stickyView.strokePath = ZNStickyRefreshView.stickyViewDefaultStrokePath
+                
                 print("normal")
                 
-                break;
+                break
             case .showStickyEffect:
                 stickyView.frame.origin.y = 7
                 stickyView.frame.size.height = parentViewHeight - 14
@@ -92,7 +101,7 @@ class ZNStickyRefreshView: UIView {
                 
                 stickyView.strokePath = strokePath
 
-                break;
+                break
             case .isRefreshing:
                 
                 UIView.animate(withDuration: 0.15, animations: {
@@ -108,11 +117,11 @@ class ZNStickyRefreshView: UIView {
             case .failedRefreshing:
                 showRefreshStatus(isSuccessful: false)
                 
-                break;
+                break
             case .succeededRefreshing:
                 showRefreshStatus(isSuccessful: true)
                 
-                break;
+                break
             }
         }
     }

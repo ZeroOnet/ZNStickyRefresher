@@ -79,9 +79,11 @@ class ZNStickyRefreshControl: UIControl {
             return
         }
         
+        // isDecelerating
+        
         if height >= 44 && scrollView.isDragging && height <= 88{
             refreshView.state = .showStickyEffect
-        } else if height < 44 { // many calls
+        } else if height < 44 {
             refreshView.state = .normal
         } else if height > 88 && refreshView.state != .isRefreshing {
 //            print(self.frame)
@@ -119,7 +121,7 @@ class ZNStickyRefreshControl: UIControl {
         refreshView.state = isSuccessful ? .succeededRefreshing : .failedRefreshing
         
         adjustScrollViewContentInset(withScrollView: scrollView, isEnd: true) { 
-            self.refreshView.state = .normal
+            self.refreshView.state = .original
         }
         
         print("end refreshing")
