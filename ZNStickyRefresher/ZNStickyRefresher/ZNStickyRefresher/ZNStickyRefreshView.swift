@@ -52,7 +52,6 @@ class ZNStickyRefreshView: UIView {
             switch state {
             case .original:
                 stickyView.frame.size.height = 30
-                stickyView.iconScale = 1.0
                 stickyView.alpha = 1.0
                 resultIconView.alpha = 0
                 resultInfoLabel.alpha = 0
@@ -61,7 +60,9 @@ class ZNStickyRefreshView: UIView {
             case .normal:
                 // sticky view defalut status
                 stickyView.center = CGPoint(x: self.bounds.width / 2.0, y: self.bounds.height / 2.0)
+                
                 stickyView.strokePath = ZNStickyRefreshView.stickyViewDefaultStrokePath
+                stickyView.iconScale = 1.0
                 
                 print("normal")
                 
