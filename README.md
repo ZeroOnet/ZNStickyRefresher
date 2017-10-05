@@ -1,5 +1,5 @@
 # ZNStickyRefresher
-A classic refresh effect called sticky candy at QQ in iOS.
+A classic refresh effect called sticky candy at QQ in iOS. (simple simulation)
 
 You can use it by those codes:
 
