@@ -125,8 +125,7 @@ class ZNStickyRefreshControl: UIControl {
 extension ZNStickyRefreshControl {
     fileprivate func setUI() {
         addSubview(refreshView)
-        backgroundColor = UIColor.gray
-//        backgroundColor = superview?.backgroundColor
+        backgroundColor = superview?.backgroundColor
         clipsToBounds = true
         
         refreshView.translatesAutoresizingMaskIntoConstraints = false

@@ -128,9 +128,9 @@ class ZNStickyRefreshView: UIView {
     }
     
     override func willMove(toSuperview newSuperview: UIView?) {
-        superview?.willMove(toSuperview: newSuperview)
+        super.willMove(toSuperview: newSuperview)
         
-//        backgroundColor = superview?.backgroundColor
+        backgroundColor = superview?.backgroundColor
     }
 }
 
