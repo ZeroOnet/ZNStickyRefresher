@@ -39,8 +39,13 @@ class ZNStickyRefreshView: UIView {
     
     private let maxStretchHeight: CGFloat = 44
     
-    fileprivate class var stickyViewDefaultStrokePath: UIBezierPath {
-        return UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 15, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
+    private let stickyViewStrokeRadius: CGFloat = 15
+    private let stickyViewOriginY: CGFloat = 7
+    
+    private let maxScaleFactor: CGFloat = 0.6
+    
+    fileprivate var stickyViewDefaultStrokePath: UIBezierPath {
+        return UIBezierPath(arcCenter: CGPoint(x: stickyViewStrokeRadius, y: stickyViewStrokeRadius), radius: stickyViewStrokeRadius, startAngle: 0, endAngle: 2.0 * .pi, clockwise: true)
     }
     
     /// store refresh control's height
@@ -51,7 +56,7 @@ class ZNStickyRefreshView: UIView {
         didSet {
             switch state {
             case .original:
-                stickyView.frame.size.height = 30
+                stickyView.frame.size.height = 2.0 * stickyViewStrokeRadius
                 stickyView.alpha = 1.0
                 resultIconView.alpha = 0
                 resultInfoLabel.alpha = 0
@@ -61,41 +66,41 @@ class ZNStickyRefreshView: UIView {
                 // sticky view defalut status
                 stickyView.center = CGPoint(x: self.bounds.width / 2.0, y: self.bounds.height / 2.0)
                 
-                stickyView.strokePath = ZNStickyRefreshView.stickyViewDefaultStrokePath
+                stickyView.strokePath = stickyViewDefaultStrokePath
                 stickyView.iconScale = 1.0
                 
                 print("normal")
                 
                 break
             case .showStickyEffect:
-                stickyView.frame.origin.y = 7
-                stickyView.frame.size.height = parentViewHeight - 14
+                stickyView.frame.origin.y = stickyViewOriginY
+                stickyView.frame.size.height = parentViewHeight - stickyViewOriginY * 2.0
                 
                 let stretchHeight = parentViewHeight - maxStretchHeight
                 
-                let stretchScaleFactor = 1 - 0.6 * stretchHeight / maxStretchHeight
+                let stretchScaleFactor = 1 - maxScaleFactor * stretchHeight / maxStretchHeight
                 
                 stickyView.iconScale = stretchScaleFactor
                 
                 // top half round
-                let strokePath = UIBezierPath(arcCenter: CGPoint(x: 15, y: 15), radius: 15.0 * stretchScaleFactor, startAngle: .pi, endAngle: 2.0 * .pi, clockwise: true)
+                let strokePath = UIBezierPath(arcCenter: CGPoint(x: stickyViewStrokeRadius, y: stickyViewStrokeRadius), radius: stickyViewStrokeRadius * stretchScaleFactor, startAngle: .pi, endAngle: 2.0 * .pi, clockwise: true)
     
-                let bottomRoundCenter = CGPoint(x: 15, y: parentViewHeight - 14 - 15 * stretchScaleFactor * stretchScaleFactor)
+                let bottomRoundCenter = CGPoint(x: stickyViewStrokeRadius, y: parentViewHeight - 2.0 * stickyViewOriginY - stickyViewStrokeRadius * stretchScaleFactor * stretchScaleFactor)
 
-                let topRoundXOffset = 15.0 * stretchScaleFactor
-                let bottomRoundXOffset = 15.0 * stretchScaleFactor * stretchScaleFactor
+                let topRoundXOffset = stickyViewStrokeRadius * stretchScaleFactor
+                let bottomRoundXOffset = stickyViewStrokeRadius * stretchScaleFactor * stretchScaleFactor
 
-                let topCurveLeftControlPoint = CGPoint(x: 15.0 - bottomRoundXOffset, y: 15 + (bottomRoundCenter.y - 15) / 2)
-                let topCurveRightControlPoint = CGPoint(x: 15.0 + bottomRoundXOffset, y: 15 + (bottomRoundCenter.y - 15) / 2)
+                let topCurveLeftControlPoint = CGPoint(x: stickyViewStrokeRadius - bottomRoundXOffset, y: stickyViewStrokeRadius + (bottomRoundCenter.y - stickyViewStrokeRadius) / 2)
+                let topCurveRightControlPoint = CGPoint(x: stickyViewStrokeRadius + bottomRoundXOffset, y: stickyViewStrokeRadius + (bottomRoundCenter.y - stickyViewStrokeRadius) / 2)
                 
-                let topRoundLeftPoint = CGPoint(x: 15.0 - topRoundXOffset, y: 15)
+                let topRoundLeftPoint = CGPoint(x: stickyViewStrokeRadius - topRoundXOffset, y: stickyViewStrokeRadius)
                 
                 // right curve
                 let bottomRoundRightPoint = CGPoint(x: bottomRoundCenter.x + bottomRoundXOffset, y: bottomRoundCenter.y)
                 strokePath.addQuadCurve(to: bottomRoundRightPoint, controlPoint: topCurveRightControlPoint)
                 
                 // bottom half round
-                strokePath.addArc(withCenter: bottomRoundCenter, radius: 15.0 * stretchScaleFactor * stretchScaleFactor, startAngle: 0, endAngle: .pi, clockwise: true)
+                strokePath.addArc(withCenter: bottomRoundCenter, radius: stickyViewStrokeRadius * stretchScaleFactor * stretchScaleFactor, startAngle: 0, endAngle: .pi, clockwise: true)
                 
                 // left curve
                 strokePath.addQuadCurve(to: topRoundLeftPoint, controlPoint: topCurveLeftControlPoint)
@@ -143,7 +148,7 @@ extension ZNStickyRefreshView {
         
         let refreshView = nib.instantiate(withOwner: nil, options: nil)[0] as! ZNStickyRefreshView
         refreshView.stickyView.fillColor = UIColor.darkGray.withAlphaComponent(0.6)
-        refreshView.stickyView.strokePath = stickyViewDefaultStrokePath
+        refreshView.stickyView.strokePath = refreshView.stickyViewDefaultStrokePath
         
         return refreshView
     }

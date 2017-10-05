@@ -17,6 +17,11 @@ class ZNStickyRefreshControl: UIControl {
     /// refresher's container view
     private weak var scrollView: UIScrollView?
     
+    /// navigation bar's height
+    private let navBarHeight: CGFloat = 64
+    
+    fileprivate let originalHeight: CGFloat = 44
+    
     /// refresh view
     fileprivate lazy var refreshView = ZNStickyRefreshView.refreshView()
     
@@ -57,7 +62,7 @@ class ZNStickyRefreshControl: UIControl {
         
         let isRefreshing = refreshView.state == .isRefreshing
         
-        let topInset = isRefreshing ? 64 : scrollView.contentInset.top
+        let topInset = isRefreshing ? navBarHeight : scrollView.contentInset.top
         
         let height = -(topInset + scrollView.contentOffset.y)
         
@@ -78,11 +83,11 @@ class ZNStickyRefreshControl: UIControl {
             return
         }
         
-        if height >= 44 && scrollView.isDragging && height <= 88{
+        if height >= originalHeight && scrollView.isDragging && height <= 2.0 * originalHeight {
             refreshView.state = .showStickyEffect
-        } else if height < 44 {
+        } else if height < originalHeight {
             refreshView.state = .normal
-        } else if height > 88 && refreshView.state != .isRefreshing {
+        } else if height > 2.0 * originalHeight && refreshView.state != .isRefreshing {
             beginRefreshing()
         }
     }
@@ -138,13 +143,13 @@ extension ZNStickyRefreshControl {
     
     fileprivate func adjustScrollViewContentInset(withScrollView: UIScrollView, isEnd: Bool, completion:(()->())?) {
         var contentInset = withScrollView.contentInset
-        contentInset.top += (isEnd ? -44 : 44)
+        contentInset.top += (isEnd ? -originalHeight : originalHeight)
         
         if !isEnd {
             withScrollView.contentInset = contentInset
             
             // fix the issue of jumping frame
-            withScrollView.contentOffset.y -= 44
+            withScrollView.contentOffset.y -= originalHeight
         } else {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                 UIView.animate(withDuration: 0.5, animations: {

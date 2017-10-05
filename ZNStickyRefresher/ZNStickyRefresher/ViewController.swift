@@ -22,7 +22,7 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "测试用例"
+        self.title = "Demo Test"
         
         tableView.addSubview(stickyRefreshControl)
     }
@@ -47,7 +47,7 @@ extension ViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ID", for: indexPath)
-        cell.textLabel?.text = "第\(indexPath.row)个"
+        cell.textLabel?.text = "case \(indexPath.row)"
         
         return cell
     }
