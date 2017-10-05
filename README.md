@@ -30,3 +30,5 @@ tableView.addSubview(stickyRefreshControl)
 
 The next gif show the effect:<br></br>
 ![image](https://github.com/ZeroOnet/ZNStickyRefresher/blob/master/ZNStickyRefresher/ZNStickyRefresher/Dispaly/display.gif)
+
+You can know it with this blog: http://blog.csdn.net/ZeroOnet/article/details/78160592 (Chinese, ^_^)
