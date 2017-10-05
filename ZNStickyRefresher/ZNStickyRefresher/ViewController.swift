@@ -34,6 +34,9 @@ class ViewController: UITableViewController {
             
             self.tableView.reloadData()
             
+            // if refresh failed, modify result tag
+            //self.stickyRefreshControl.isSuccessful = false
+            
             self.stickyRefreshControl.endRefreshing()
         }
     }

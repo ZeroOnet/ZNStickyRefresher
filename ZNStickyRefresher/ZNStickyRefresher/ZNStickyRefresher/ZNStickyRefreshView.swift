@@ -56,6 +56,8 @@ class ZNStickyRefreshView: UIView {
         didSet {
             switch state {
             case .original:
+                
+                // sticky view defalut status
                 stickyView.frame.size.height = 2.0 * stickyViewStrokeRadius
                 stickyView.alpha = 1.0
                 resultIconView.alpha = 0
@@ -63,7 +65,8 @@ class ZNStickyRefreshView: UIView {
                 
                 break
             case .normal:
-                // sticky view defalut status
+                
+                // adjust location of sticky view
                 stickyView.center = CGPoint(x: self.bounds.width / 2.0, y: self.bounds.height / 2.0)
                 
                 stickyView.strokePath = stickyViewDefaultStrokePath
