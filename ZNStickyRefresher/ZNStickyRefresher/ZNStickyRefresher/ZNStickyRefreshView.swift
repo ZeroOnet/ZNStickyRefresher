@@ -63,7 +63,6 @@ class ZNStickyRefreshView: UIView {
                 resultIconView.alpha = 0
                 resultInfoLabel.alpha = 0
                 
-                break
             case .normal:
                 
                 // adjust location of sticky view
@@ -72,9 +71,6 @@ class ZNStickyRefreshView: UIView {
                 stickyView.strokePath = stickyViewDefaultStrokePath
                 stickyView.iconScale = 1.0
                 
-                print("normal")
-                
-                break
             case .showStickyEffect:
                 stickyView.frame.origin.y = stickyViewOriginY
                 stickyView.frame.size.height = parentViewHeight - stickyViewOriginY * 2.0
@@ -110,7 +106,6 @@ class ZNStickyRefreshView: UIView {
                 
                 stickyView.strokePath = strokePath
 
-                break
             case .isRefreshing:
                 
                 UIView.animate(withDuration: 0.15, animations: {
@@ -126,11 +121,9 @@ class ZNStickyRefreshView: UIView {
             case .failedRefreshing:
                 showRefreshStatus(isSuccessful: false)
                 
-                break
             case .succeededRefreshing:
                 showRefreshStatus(isSuccessful: true)
                 
-                break
             }
         }
     }
