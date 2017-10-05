@@ -56,7 +56,7 @@ class ZNStickyRefreshControl: UIControl {
         super.removeFromSuperview()
     }
     
-    // FIXME: - KVO call-back
+    // KVO call-back
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard let scrollView = scrollView else { return }
         
