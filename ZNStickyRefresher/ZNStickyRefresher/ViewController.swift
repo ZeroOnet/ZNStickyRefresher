@@ -24,7 +24,7 @@ class ViewController: UITableViewController {
         
         self.title = "Demo Test"
         
-        tableView.addSubview(stickyRefreshControl)
+        tableView.stickyRefreshControl = stickyRefreshControl
     }
     
     @objc private func loadData() {
@@ -34,7 +34,7 @@ class ViewController: UITableViewController {
             
             self.tableView.reloadData()
             
-            // if refresh failed, modify result tag
+            // if refresh failed, modify result tag that default is true.
             //self.stickyRefreshControl.isSuccessful = false
             
             self.stickyRefreshControl.endRefreshing()

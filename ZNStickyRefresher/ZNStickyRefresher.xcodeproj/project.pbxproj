@@ -13,11 +13,13 @@
 		4F0DF5EC1F75370500B2810C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F0DF5EB1F75370500B2810C /* Assets.xcassets */; };
 		4F0DF5EF1F75370500B2810C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F0DF5ED1F75370500B2810C /* LaunchScreen.storyboard */; };
 		4F0DF5FA1F75370500B2810C /* ZNStickyRefresherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DF5F91F75370500B2810C /* ZNStickyRefresherUITests.swift */; };
-		4F0DF6061F75407800B2810C /* ZNStickyRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DF6051F75407800B2810C /* ZNStickyRefreshControl.swift */; };
-		4F0DF6081F75416C00B2810C /* ZNStickyRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0DF6071F75416B00B2810C /* ZNStickyRefreshView.swift */; };
-		4F0DF60A1F75435A00B2810C /* ZNStickyRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0DF6091F75435A00B2810C /* ZNStickyRefreshView.xib */; };
 		4F0DF9F71F85D5F800662E4C /* display.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4F0DF9F61F85D5F800662E4C /* display.gif */; };
-		4F1976A51F80939000CD1676 /* ZNStickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1976A41F80939000CD1676 /* ZNStickyView.swift */; };
+		4FD335971F8B0FC800DB650D /* ZNStickyRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD3358E1F8B0FC800DB650D /* ZNStickyRefreshControl.swift */; };
+		4FD335981F8B0FC800DB650D /* UIScrollView+ZNStickyRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD335901F8B0FC800DB650D /* UIScrollView+ZNStickyRefresher.swift */; };
+		4FD335991F8B0FC800DB650D /* ZNStickyRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD335921F8B0FC800DB650D /* ZNStickyRefresher.swift */; };
+		4FD3359A1F8B0FC800DB650D /* ZNStickyRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD335941F8B0FC800DB650D /* ZNStickyRefreshView.swift */; };
+		4FD3359B1F8B0FC800DB650D /* ZNStickyRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FD335951F8B0FC800DB650D /* ZNStickyRefreshView.xib */; };
+		4FD3359C1F8B0FC800DB650D /* ZNStickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD335961F8B0FC800DB650D /* ZNStickyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,11 +43,13 @@
 		4F0DF5F51F75370500B2810C /* ZNStickyRefresherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZNStickyRefresherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F0DF5F91F75370500B2810C /* ZNStickyRefresherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZNStickyRefresherUITests.swift; sourceTree = "<group>"; };
 		4F0DF5FB1F75370500B2810C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F0DF6051F75407800B2810C /* ZNStickyRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZNStickyRefreshControl.swift; sourceTree = "<group>"; };
-		4F0DF6071F75416B00B2810C /* ZNStickyRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZNStickyRefreshView.swift; sourceTree = "<group>"; };
-		4F0DF6091F75435A00B2810C /* ZNStickyRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZNStickyRefreshView.xib; sourceTree = "<group>"; };
 		4F0DF9F61F85D5F800662E4C /* display.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = display.gif; sourceTree = "<group>"; };
-		4F1976A41F80939000CD1676 /* ZNStickyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZNStickyView.swift; sourceTree = "<group>"; };
+		4FD3358E1F8B0FC800DB650D /* ZNStickyRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZNStickyRefreshControl.swift; sourceTree = "<group>"; };
+		4FD335901F8B0FC800DB650D /* UIScrollView+ZNStickyRefresher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+ZNStickyRefresher.swift"; sourceTree = "<group>"; };
+		4FD335921F8B0FC800DB650D /* ZNStickyRefresher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZNStickyRefresher.swift; sourceTree = "<group>"; };
+		4FD335941F8B0FC800DB650D /* ZNStickyRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZNStickyRefreshView.swift; sourceTree = "<group>"; };
+		4FD335951F8B0FC800DB650D /* ZNStickyRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZNStickyRefreshView.xib; sourceTree = "<group>"; };
+		4FD335961F8B0FC800DB650D /* ZNStickyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZNStickyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +91,8 @@
 		4F0DF5E31F75370500B2810C /* ZNStickyRefresher */ = {
 			isa = PBXGroup;
 			children = (
+				4FD3358C1F8B0FC800DB650D /* ZNStickyRefresher */,
 				4F0DF9F51F85D5F800662E4C /* Dispaly */,
-				4F0DF6041F75405E00B2810C /* ZNStickyRefresher */,
 				4F0DF5E41F75370500B2810C /* AppDelegate.swift */,
 				4F0DF5E61F75370500B2810C /* ViewController.swift */,
 				4F0DF5E81F75370500B2810C /* Main.storyboard */,
@@ -108,23 +112,57 @@
 			path = ZNStickyRefresherUITests;
 			sourceTree = "<group>";
 		};
-		4F0DF6041F75405E00B2810C /* ZNStickyRefresher */ = {
-			isa = PBXGroup;
-			children = (
-				4F0DF6051F75407800B2810C /* ZNStickyRefreshControl.swift */,
-				4F0DF6071F75416B00B2810C /* ZNStickyRefreshView.swift */,
-				4F1976A41F80939000CD1676 /* ZNStickyView.swift */,
-				4F0DF6091F75435A00B2810C /* ZNStickyRefreshView.xib */,
-			);
-			path = ZNStickyRefresher;
-			sourceTree = "<group>";
-		};
 		4F0DF9F51F85D5F800662E4C /* Dispaly */ = {
 			isa = PBXGroup;
 			children = (
 				4F0DF9F61F85D5F800662E4C /* display.gif */,
 			);
 			path = Dispaly;
+			sourceTree = "<group>";
+		};
+		4FD3358C1F8B0FC800DB650D /* ZNStickyRefresher */ = {
+			isa = PBXGroup;
+			children = (
+				4FD3358D1F8B0FC800DB650D /* Control */,
+				4FD3358F1F8B0FC800DB650D /* Extension */,
+				4FD335911F8B0FC800DB650D /* Protocol */,
+				4FD335931F8B0FC800DB650D /* Views */,
+			);
+			path = ZNStickyRefresher;
+			sourceTree = "<group>";
+		};
+		4FD3358D1F8B0FC800DB650D /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				4FD3358E1F8B0FC800DB650D /* ZNStickyRefreshControl.swift */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		4FD3358F1F8B0FC800DB650D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4FD335901F8B0FC800DB650D /* UIScrollView+ZNStickyRefresher.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		4FD335911F8B0FC800DB650D /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				4FD335921F8B0FC800DB650D /* ZNStickyRefresher.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		4FD335931F8B0FC800DB650D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4FD335941F8B0FC800DB650D /* ZNStickyRefreshView.swift */,
+				4FD335951F8B0FC800DB650D /* ZNStickyRefreshView.xib */,
+				4FD335961F8B0FC800DB650D /* ZNStickyView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,8 +252,8 @@
 			files = (
 				4F0DF5EF1F75370500B2810C /* LaunchScreen.storyboard in Resources */,
 				4F0DF9F71F85D5F800662E4C /* display.gif in Resources */,
-				4F0DF60A1F75435A00B2810C /* ZNStickyRefreshView.xib in Resources */,
 				4F0DF5EC1F75370500B2810C /* Assets.xcassets in Resources */,
+				4FD3359B1F8B0FC800DB650D /* ZNStickyRefreshView.xib in Resources */,
 				4F0DF5EA1F75370500B2810C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,10 +273,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F0DF5E71F75370500B2810C /* ViewController.swift in Sources */,
-				4F0DF6081F75416C00B2810C /* ZNStickyRefreshView.swift in Sources */,
-				4F1976A51F80939000CD1676 /* ZNStickyView.swift in Sources */,
 				4F0DF5E51F75370500B2810C /* AppDelegate.swift in Sources */,
-				4F0DF6061F75407800B2810C /* ZNStickyRefreshControl.swift in Sources */,
+				4FD335991F8B0FC800DB650D /* ZNStickyRefresher.swift in Sources */,
+				4FD3359A1F8B0FC800DB650D /* ZNStickyRefreshView.swift in Sources */,
+				4FD3359C1F8B0FC800DB650D /* ZNStickyView.swift in Sources */,
+				4FD335971F8B0FC800DB650D /* ZNStickyRefreshControl.swift in Sources */,
+				4FD335981F8B0FC800DB650D /* UIScrollView+ZNStickyRefresher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
