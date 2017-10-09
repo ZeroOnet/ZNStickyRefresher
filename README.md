@@ -11,7 +11,7 @@ lazy var stickyRefreshControl: ZNStickyRefreshControl = {
   return result
 }()
 
-tableView.addSubview(stickyRefreshControl)
+tableView.stickyRefreshControl = stickyRefreshControl
 
 @objc private func loadData() {
   // simulate network time waste
